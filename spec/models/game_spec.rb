@@ -58,4 +58,19 @@ RSpec.describe Game do
     g.turn
     expect(g.current_player).to eq(player3)
   end
+
+  it 'gives the current player upto 5 cards' do
+    deck = Deck.full_deck
+    player1 = Player.new
+    player2 = Player.new
+    n = 10
+    g = Game.new([player1, player2], deck)
+    g.deal_in(n)
+
+    expect(player1.hand.in_hand.count).to be < 5
+    expect(player2.hand.in_hand.count).to be < 5
+    g.turn
+    expect(g.current_player.hand.in_hand.count).to eq(5)
+  end
 end
+

@@ -12,11 +12,20 @@ class Hand
     @in_hand = in_hand
   end
 
+  def in_hand_count
+    in_hand.count
+  end
+
   def stock_count
     @stock_pile.length
   end
 
   def stock_top
-    @stock_pile.first.value
+    @stock_pile.first
+  end
+
+  def draw(deck)
+    cards = deck.deal(5 - in_hand_count)
+    @in_hand += cards
   end
 end
