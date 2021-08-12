@@ -25,9 +25,28 @@ class Game
     current_player.hand.draw(deck)
 
     # (maybe) play one card at a time
-    card_to_play = current_player.pick_card
-    # pile_to_play_on = current_player.pick_pile
+    card_to_play, from_pile = current_player.pick_card
 
-    # discard
+    # pick a pile where we're placing the card
+    to_pile = current_player.pick_pile(building_piles)
+
+    to_pile.move(from_pile, card_to_play)
+
+    # # Confirm not discarding from discard or stock pile
+    # if (from_pile.is_a?(DiscardPile) || from_pile.is_a?(StockPile)) && to_pile.is_a?(DiscardPile)
+    #   raise ArgumentError.new("Unable to discard from discard or stock pile.")
+    # end
+    #
+    # # TODO: confirm valid discard
+    # if to_pile.is_a?(DiscardPile)
+    #   # move
+    # end
+    #
+    # # TODO: confirm valid move
+    # if to_pile.is_a?(BuildingPile)
+    #
+    # end
+    #
+    # # TODO: If valid, pick again
   end
 end

@@ -1,6 +1,7 @@
 class Hand
   attr_reader :discard_piles
   attr_reader :in_hand
+  attr_reader :stock_pile
 
   def self.deal_in(stock_pile)
     Hand.new(stock_pile, Array.new(4) { Array.new }, [])
@@ -21,7 +22,7 @@ class Hand
   end
 
   def stock_top
-    @stock_pile.first
+    @stock_pile.top_card
   end
 
   def draw(deck)
